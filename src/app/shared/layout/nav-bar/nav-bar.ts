@@ -4,7 +4,7 @@ import { UserRole } from '@core/enums/user-role.enum';
 import { AuthService } from '@core/services/auth.service';
 
 @Component({
-  selector: 'app-nav-bar',
+  selector: 'nav-bar',
   imports: [RouterLink],
   templateUrl: './nav-bar.html',
   styleUrl: './nav-bar.scss',

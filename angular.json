@@ -55,7 +55,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"]
+            "styles": ["src/tailwind.scss", "src/styles.scss"]
           },
           "configurations": {
             "production": {
