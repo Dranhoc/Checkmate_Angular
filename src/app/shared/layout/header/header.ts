@@ -5,6 +5,6 @@ import { NavBar } from '../nav-bar/nav-bar';
   selector: 'app-header',
   imports: [NavBar],
   templateUrl: './header.html',
-  styleUrl: './header.scss',
+  styleUrl: './header.css',
 })
 export class Header {}

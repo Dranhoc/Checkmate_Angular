@@ -1,5 +1,7 @@
+@reference "../../../../tailwind.css";
 ul {
   display: flex;
   justify-content: space-around;
   width: 100%;
+  @apply my-12 bg-red-500;
 }

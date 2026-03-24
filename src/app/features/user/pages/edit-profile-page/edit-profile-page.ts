@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-edit-profile-page',
   imports: [],
   templateUrl: './edit-profile-page.html',
-  styleUrl: './edit-profile-page.scss',
+  styleUrl: './edit-profile-page.css',
 })
 export class EditProfilePage {}

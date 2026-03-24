@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
   selector: 'app-forms-error-display',
   imports: [],
   templateUrl: './forms-error-display.html',
-  styleUrl: './forms-error-display.scss',
+  styleUrl: './forms-error-display.css',
 })
 export class FormsErrorDisplay {
   control = input.required<FormControl<unknown | null>>();

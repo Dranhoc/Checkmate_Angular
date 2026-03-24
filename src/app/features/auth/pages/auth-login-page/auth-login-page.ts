@@ -9,7 +9,7 @@ import { FormsErrorDisplay } from '@shared/components/forms-error-display/forms-
   selector: 'app-auth-login-page',
   imports: [RouterLink, ReactiveFormsModule, FormsErrorDisplay, NgClass],
   templateUrl: './auth-login-page.html',
-  styleUrl: './auth-login-page.scss',
+  styleUrl: './auth-login-page.css',
 })
 export class AuthLoginPage {
   private readonly _fb = inject(FormBuilder);

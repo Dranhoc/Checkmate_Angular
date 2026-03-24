@@ -7,7 +7,7 @@ import { AuthService } from '@core/services/auth.service';
   selector: 'nav-bar',
   imports: [RouterLink],
   templateUrl: './nav-bar.html',
-  styleUrl: './nav-bar.scss',
+  styleUrl: './nav-bar.css',
 })
 export class NavBar {
   protected readonly UserRole = UserRole;

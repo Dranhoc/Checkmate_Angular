@@ -10,7 +10,7 @@ import { FormsErrorDisplay } from '@shared/components/forms-error-display/forms-
   selector: 'app-auth-register-page',
   imports: [ReactiveFormsModule, FormsErrorDisplay],
   templateUrl: './auth-register-page.html',
-  styleUrl: './auth-register-page.scss',
+  styleUrl: './auth-register-page.css',
 })
 export class AuthRegisterPage {
   private readonly _fb = inject(FormBuilder);
