@@ -1,0 +1,25 @@
+@if(control().touched && control().invalid){
+@if(control().getError('required')){
+<p>The {{name()}} is required</p>
+} @if(control().getError('minlength')){
+<p>
+  The {{name()}} must be at least
+  {{control().getError('minlength').requiredLength }} characters
+</p>
+} @if(control().getError('maxlength')){
+<p>
+  The {{name()}} must be maximum of
+  {{control().getError('maxlength').requiredLength}} characters
+</p>
+} @if(control().getError('email')){
+<p>The {{name()}} must be a valid email</p>
+} @if(control().getError('lowercase')){
+<p>The {{name()}} must have a lowercase letter</p>
+} @if(control().getError('uppercase')){
+<p>The {{name()}} must have an uppercase letter</p>
+} @if(control().getError('number')){
+<p>The {{name()}} must have a number</p>
+} @if(control().getError('specialChar')){
+<p>The {{name()}} must have a special character</p>
+}
+}

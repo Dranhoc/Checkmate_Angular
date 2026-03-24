@@ -1,0 +1,18 @@
+<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="email-input">Email : </label>
+    <input type="email" id="email-input" formControlName="email"
+      [ngClass]="{'input-error' : email.invalid && email.touched}">
+    <app-forms-error-display [control]="email" name="email" />
+  </div>
+  <div>
+    <label for="password-input">Password : </label>
+    <input type="password" id="password-input" formControlName="password">
+    <app-forms-error-display [control]="password" name="password" />
+  </div>
+  @if(loginError()){
+  <p class="color-red">Invalid Credentials</p>
+  }
+  <button type="submit" [disabled]="formLogin.invalid">Login</button>
+</form>
+<a routerLink="/auth/register">Do you want to create a account?</a>

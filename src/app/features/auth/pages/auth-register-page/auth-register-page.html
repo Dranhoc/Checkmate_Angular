@@ -1,0 +1,24 @@
+<form [formGroup]="formRegister" (ngSubmit)="onSubmitRegister()">
+  <div>
+    <label for="firstname-input">Firstname : </label>
+    <input id="firstname-input" type="text" formControlName="firstname">
+    <app-forms-error-display [control]="firstname" name="firstname" />
+  </div>
+  <div>
+    <label for="lastname-input">Lastname : </label>
+    <input id="lastname-input" type="text" formControlName="lastname">
+    <app-forms-error-display [control]="lastname" name="lastname" />
+  </div>
+  <div>
+    <label for="email-input">Email : </label>
+    <input id="email-input" type="email" formControlName="email">
+    <app-forms-error-display [control]="email" name="email" />
+  </div>
+  <div>
+    <label for="password-input">Password : </label>
+    <input id="password-input" type="password" formControlName="password">
+    <app-forms-error-display [control]="password" name="password" />
+  </div>
+  <button type="submit" [disabled]="formRegister.invalid">Sign up</button>
+
+</form>
