@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
-import { UserRole } from '@core/enums/user-role.enum';
 import { JwtDecoded, LoginResponse, RegisterData } from '@core/models/auth.interface';
 import { jwtDecode } from 'jwt-decode';
 import { firstValueFrom } from 'rxjs';
@@ -17,26 +16,26 @@ export class AuthService {
   private _authToken = signal<string>('');
   authToken = this._authToken.asReadonly();
 
-  private _role = signal<UserRole | null>(null);
-  role = this._role.asReadonly();
+  private _admin = signal<boolean | null>(null);
+  admin = this._admin.asReadonly();
 
   isAdmin = computed(() => {
-    return this.role() === UserRole.admin;
+    return this.admin();
   });
-  isConnected = computed(() => !!this.authToken()); //!! convertis en booléen
+  isConnected = computed(() => !!this.authToken());
 
   constructor() {
     effect(() => {
       const token = this._authToken();
       if (!token) {
         localStorage.removeItem('token');
-        this._role.set(null);
+        this._admin.set(null);
         return;
       }
       localStorage.setItem('token', token);
       const decoded: JwtDecoded = jwtDecode(token);
       if (decoded.exp && decoded.exp * 1000 > Date.now()) {
-        this._role.set((decoded.role as UserRole) ?? UserRole.user);
+        this._admin.set(decoded.isAdmin);
       } else {
         this._authToken.set('');
       }
@@ -49,18 +48,17 @@ export class AuthService {
   }
 
   async login(email: string, password: string): Promise<void | string> {
-    //call API
     const response = await firstValueFrom(
-      this._httpClient.post<LoginResponse>(this._apiUrl + '/login', {
+      this._httpClient.post<LoginResponse>(this._apiUrl + '/auth/login', {
         email,
         password,
       }),
     );
-    this._authToken.set(response.accessToken);
+    this._authToken.set(response.token);
   }
 
   async register(userData: RegisterData): Promise<void> {
-    await firstValueFrom(this._httpClient.post(this._apiUrl + '/register', userData));
+    await firstValueFrom(this._httpClient.post(this._apiUrl + '/auth/register', userData));
   }
 
   logout() {

@@ -1,4 +1,4 @@
 export const env = {
   production: false,
-  apiURL: 'http://staging.masuperapi.com:3000',
+  apiURL: 'http://localhost:8080',
 };

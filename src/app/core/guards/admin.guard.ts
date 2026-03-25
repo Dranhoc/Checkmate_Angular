@@ -1,6 +1,5 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { UserRole } from '@core/enums/user-role.enum';
 import { AuthService } from '@core/services/auth.service';
 
 export const adminGuard: CanActivateFn = (route, state) => {
@@ -10,6 +9,8 @@ export const adminGuard: CanActivateFn = (route, state) => {
 
   if (isAdmin()) {
     // admin connected
+    console.log('Log as an admin');
+
     return true;
   }
 

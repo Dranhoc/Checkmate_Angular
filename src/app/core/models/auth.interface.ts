@@ -1,12 +1,11 @@
-import { UserRole } from '@core/enums/user-role.enum';
 import { JwtPayload } from 'jwt-decode';
 
 export interface LoginResponse {
-  accessToken: string;
+  token: string;
 }
 
 export interface JwtDecoded extends JwtPayload {
-  role: UserRole;
+  isAdmin: boolean;
 }
 
 export interface RegisterData {
