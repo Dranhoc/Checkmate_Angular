@@ -1,0 +1,21 @@
+<!-- <button [ngClass]="{
+  'pending':      status() === TournamentStatusCard.pending,
+  'in-progress':  status() === TournamentStatusCard.inProgress,
+  'complete':     status() === TournamentStatusCard.complete,
+  'finished':     status() === TournamentStatusCard.finished,
+  'registered':   status() === TournamentStatusCard.registered
+  }"> -->
+<button class={{status()}}>
+  @if(status() === TournamentStatusCard.pending){
+  S'inscrire
+  }@else if(status() === TournamentStatusCard.inProgress){
+  Voir le live
+  }@else if(status() === TournamentStatusCard.complete){
+  Fermé
+  }@else if(status() === TournamentStatusCard.finished){
+  Voir les résultats
+  }@else if(status() === TournamentStatusCard.registered){
+  Se désinscrire
+  }
+
+</button>

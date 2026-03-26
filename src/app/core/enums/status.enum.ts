@@ -3,3 +3,11 @@ export enum Status {
   inProgress = 'inProgress',
   finished = 'finished',
 }
+
+export enum TournamentStatusCard {
+  pending = 'pending',
+  inProgress = 'in-progress',
+  finished = 'finished',
+  complete = 'complete',
+  registered = 'registered',
+}

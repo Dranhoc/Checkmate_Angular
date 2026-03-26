@@ -1,9 +1,14 @@
 :root{
   --primary-color: #800020;
+  --primary-transparent-color:#8000207b;
   --secondary-color: #242526;
   --tertiary-color: #4A707A;
+
   --in-progress-color:#002C34;
   --light-grey-color: #F5F5F5;
+  --mild-grey-color: #5E5E5F;
+  --mild-grey-transparent-color:#5e5e5f3e;
+
   --primary-font: "Newsreader", serif;
   --secondary-font: "Manrope", sans-serif;
 }

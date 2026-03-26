@@ -6,11 +6,13 @@
   @apply p-20 md:p-32;
 
   .tournament-card__badge{
+    position: relative;
     width: fit-content;
     border-radius: 999px;
     color: white;
-    padding: 4px 12px;
+    padding: 8px 24px;
     margin-bottom: 24px;
+    line-height: 1;
   }
   &.pending{
     border-left: 4px solid var(--primary-color);
@@ -22,21 +24,33 @@
     border-left: 4px solid var(--in-progress-color);
     .tournament-card__badge{
       background-color: var(--in-progress-color);
+      &::before{
+        content:"";
+        position: absolute;
+        left:10px;
+        top:calc(50% - 3px);
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: white;
+      }
     }
   }
   &.finished{
     .tournament-card__badge{
-      background-color: var(--in-progress-color);
+      background-color: var(--mild-grey-color);
     }
   }
   &.registered{
     .tournament-card__badge{
-      background-color: var(--in-progress-color);
+      background-color: var(--mild-grey-transparent-color);
+      color:var(--secondary-color);
     }
   }
   &.complete{
     .tournament-card__badge{
-      background-color: var(--in-progress-color);
+      background-color: var(--mild-grey-transparent-color);
+      color:var(--secondary-color);
     }
   }
 
@@ -47,4 +61,18 @@
   .tournament-card__elo{
     text-align: right;
   }
+  .tournament-card__status{
+    margin-bottom: 16px;
+  }
+  .tournament-card__footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap:10px;
+    p{
+      text-align: right;
+    }
+  }
+
 }

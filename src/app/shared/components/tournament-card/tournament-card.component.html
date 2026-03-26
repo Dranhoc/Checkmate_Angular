@@ -1,40 +1,8 @@
-<!-- <div class="tournament-card"
-  [ngClass]="{'tournament-status-pending' : tournament().status === 'pending', 'tournament-status-in-progress' : tournament().status === 'inProgress'}">
-  <div class="tournament-card__badge" [ngClass]="{'in-progress' : tournament().status === 'inProgress'}">
-    @if(tournament().status === 'pending'){
-    Inscriptions Ouvertes
-    }@else if(tournament().status === 'inProgress'){
-    <b>&bull;</b> En cours
-    }@else if(tournament().status === 'finished'){
-    Tournoi terminé
-    }
-  </div>
-  <h3>{{tournament().name}}</h3>
-  <div class="flex gap-10">
-    <p>{{tournament().location}}</p>
-    <p>X / {{tournament().max_player}} Joueurs</p>
-  </div>
-  @if(tournament().status === 'pending'){
-  <p>Clôture des inscriptions : {{tournament().end_inscription_date}}</p>
-  }@else if (tournament().status === 'finished'){
-  <p>Tournoi terminé.</p>
-  }@else if (tournament().status === 'inProgress'){
-  <p>En cours de déroulement...</p>
-  }
-</div> -->
 @if(isRegistered()){
-<p>registered</p>
-}@else if(isComplete()){
-<p>complete</p>
-}
-@else{
-
-
-@if(tournament().status === 'pending'){
-<div class="tournament-card pending">
+<div class="tournament-card registered">
   <div class="tournament-card__header">
     <div class="tournament-card__badge">
-      Inscriptions Ouvertes
+      Inscrit
     </div>
     <div class="tournament-card__elo">
       <p>{{tournament().min_elo}} - {{tournament().max_elo}} ELO</p>
@@ -42,18 +10,71 @@
     </div>
   </div>
   <h3>{{tournament().name}}</h3>
-  <div class="flex gap-10">
+  <div class="flex gap-5">
+    <svg-icon src="/svg/loc.svg" />
     <p>{{tournament().location}}</p>
+  </div>
+  <p class="tournament-card__status">Clôture des inscriptions : {{tournament().end_inscription_date | date}}</p>
+  <div class="tournament-card__footer">
+    <router-button [status]="TournamentStatusCard.registered" />
     <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
   </div>
-  <p>Clôture des inscriptions : {{tournament().end_inscription_date | date}}</p>
+</div>
+
+}@else if(isComplete()){
+<div class="tournament-card complete">
+  <div class="tournament-card__header">
+    <div class="tournament-card__badge">
+      Complet
+    </div>
+    <div class="tournament-card__elo">
+      <p>{{tournament().min_elo}} - {{tournament().max_elo}} ELO</p>
+      <span>{{ tournament().category | join: ' - ' : 'name'}}</span>
+    </div>
+  </div>
+  <h3>{{tournament().name}}</h3>
+  <div class="flex gap-5">
+    <svg-icon src="/svg/loc.svg" />
+    <p>{{tournament().location}}</p>
+  </div>
+  <p class="tournament-card__status">Inscriptions terminées</p>
+  <div class="tournament-card__footer">
+    <router-button [status]="TournamentStatusCard.complete" />
+    <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+  </div>
+</div>
+}
+
+@else{
+
+@if(tournament().status === 'pending'){
+<div class="tournament-card pending">
+  <div class="tournament-card__header">
+    <div class="tournament-card__badge">
+      Inscriptions ouvertes
+    </div>
+    <div class="tournament-card__elo">
+      <p>{{tournament().min_elo}} - {{tournament().max_elo}} ELO</p>
+      <span>{{ tournament().category | join: ' - ' : 'name'}}</span>
+    </div>
+  </div>
+  <h3>{{tournament().name}}</h3>
+  <div class="flex gap-5">
+    <svg-icon src="/svg/loc.svg" />
+    <p>{{tournament().location}}</p>
+  </div>
+  <p class="tournament-card__status">Clôture des inscriptions : {{tournament().end_inscription_date | date}}</p>
+  <div class="tournament-card__footer">
+    <router-button [status]="TournamentStatusCard.pending" />
+    <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+  </div>
 </div>
 
 }@else if(tournament().status === 'inProgress'){
 <div class="tournament-card in-progress">
   <div class="tournament-card__header">
     <div class="tournament-card__badge">
-      <b>&bull;</b> En cours
+      En cours
     </div>
     <div class="tournament-card__elo">
       <p>{{tournament().min_elo}} - {{tournament().max_elo}} ELO</p>
@@ -61,18 +82,22 @@
     </div>
   </div>
   <h3>{{tournament().name}}</h3>
-  <div class="flex gap-10">
+  <div class="flex gap-5">
+    <svg-icon src="/svg/loc.svg" />
     <p>{{tournament().location}}</p>
+  </div>
+  <p class="tournament-card__status">En cours de déroulement...</p>
+  <div class="tournament-card__footer">
+    <router-button [status]="TournamentStatusCard.inProgress" />
     <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
   </div>
-  <p>En cours de déroulement...</p>
 </div>
 
 }@else if(tournament().status === 'finished'){
 <div class="tournament-card finished">
   <div class="tournament-card__header">
     <div class="tournament-card__badge">
-      <b>&bull;</b> En cours
+      Terminé
     </div>
     <div class="tournament-card__elo">
       <p>{{tournament().min_elo}} - {{tournament().max_elo}} ELO</p>
@@ -80,11 +105,15 @@
     </div>
   </div>
   <h3>{{tournament().name}}</h3>
-  <div class="flex gap-10">
+  <div class="flex gap-5">
+    <svg-icon src="/svg/loc.svg" />
     <p>{{tournament().location}}</p>
-    <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
   </div>
-  <p>Finished</p>
+  <p class="tournament-card__status">Tournoi terminé</p>
+  <div class="tournament-card__footer">
+    <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+    <router-button [status]="TournamentStatusCard.finished" />
+  </div>
 </div>
 }
 }
