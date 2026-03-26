@@ -4,6 +4,7 @@ import { ApiResponse } from '@core/models/api.interface';
 import { Tournament } from '@core/models/tournament.interface';
 import { env } from '@env/env';
 import { firstValueFrom } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,15 +12,14 @@ import { firstValueFrom } from 'rxjs';
 export class TournamentService {
   private readonly _httpClient = inject(HttpClient);
   private readonly _apiUrl = env.apiURL;
+  private readonly _authService = inject(AuthService);
 
-  // private _tournaments = signal<Array<Tournament>>([]);
+  authUserId: string = this._authService.userId();
 
   async getAll(): Promise<Array<Tournament>> {
     const response = await firstValueFrom(
       this._httpClient.get<ApiResponse<Array<Tournament>>>(this._apiUrl + '/tournament/'),
     );
-    // this._tournaments.set(response);
-    // console.log(this._tournaments);
 
     return response.data;
   }
