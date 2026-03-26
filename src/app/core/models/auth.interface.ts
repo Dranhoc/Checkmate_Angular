@@ -5,6 +5,7 @@ export interface LoginResponse {
 }
 
 export interface JwtDecoded extends JwtPayload {
+  id: string;
   isAdmin: boolean;
 }
 

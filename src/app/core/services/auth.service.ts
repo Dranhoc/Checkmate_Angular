@@ -16,6 +16,9 @@ export class AuthService {
   private _authToken = signal<string>('');
   authToken = this._authToken.asReadonly();
 
+  private _userId = signal<string>('');
+  userId = this._userId.asReadonly();
+
   private _admin = signal<boolean | null>(null);
   admin = this._admin.asReadonly();
 
@@ -34,8 +37,10 @@ export class AuthService {
       }
       localStorage.setItem('token', token);
       const decoded: JwtDecoded = jwtDecode(token);
-      if (decoded.exp && decoded.exp * 1000 > Date.now()) {
+      if (decoded.id && decoded.exp && decoded.exp * 1000 > Date.now()) {
         this._admin.set(decoded.isAdmin);
+        this._userId.set(decoded.id);
+        console.log('USERID : ', this._userId);
       } else {
         this._authToken.set('');
       }

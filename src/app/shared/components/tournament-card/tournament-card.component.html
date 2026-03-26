@@ -1,0 +1,90 @@
+<!-- <div class="tournament-card"
+  [ngClass]="{'tournament-status-pending' : tournament().status === 'pending', 'tournament-status-in-progress' : tournament().status === 'inProgress'}">
+  <div class="tournament-card__badge" [ngClass]="{'in-progress' : tournament().status === 'inProgress'}">
+    @if(tournament().status === 'pending'){
+    Inscriptions Ouvertes
+    }@else if(tournament().status === 'inProgress'){
+    <b>&bull;</b> En cours
+    }@else if(tournament().status === 'finished'){
+    Tournoi terminé
+    }
+  </div>
+  <h3>{{tournament().name}}</h3>
+  <div class="flex gap-10">
+    <p>{{tournament().location}}</p>
+    <p>X / {{tournament().max_player}} Joueurs</p>
+  </div>
+  @if(tournament().status === 'pending'){
+  <p>Clôture des inscriptions : {{tournament().end_inscription_date}}</p>
+  }@else if (tournament().status === 'finished'){
+  <p>Tournoi terminé.</p>
+  }@else if (tournament().status === 'inProgress'){
+  <p>En cours de déroulement...</p>
+  }
+</div> -->
+@if(isRegistered()){
+<p>registered</p>
+}@else if(isComplete()){
+<p>complete</p>
+}
+@else{
+
+
+@if(tournament().status === 'pending'){
+<div class="tournament-card pending">
+  <div class="tournament-card__header">
+    <div class="tournament-card__badge">
+      Inscriptions Ouvertes
+    </div>
+    <div class="tournament-card__elo">
+      <p>{{tournament().min_elo}} - {{tournament().max_elo}} ELO</p>
+      <span>{{ tournament().category | join: ' - ' : 'name'}}</span>
+    </div>
+  </div>
+  <h3>{{tournament().name}}</h3>
+  <div class="flex gap-10">
+    <p>{{tournament().location}}</p>
+    <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+  </div>
+  <p>Clôture des inscriptions : {{tournament().end_inscription_date | date}}</p>
+</div>
+
+}@else if(tournament().status === 'inProgress'){
+<div class="tournament-card in-progress">
+  <div class="tournament-card__header">
+    <div class="tournament-card__badge">
+      <b>&bull;</b> En cours
+    </div>
+    <div class="tournament-card__elo">
+      <p>{{tournament().min_elo}} - {{tournament().max_elo}} ELO</p>
+      <span>{{ tournament().category | join: ' - ' : 'name'}}</span>
+    </div>
+  </div>
+  <h3>{{tournament().name}}</h3>
+  <div class="flex gap-10">
+    <p>{{tournament().location}}</p>
+    <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+  </div>
+  <p>En cours de déroulement...</p>
+</div>
+
+}@else if(tournament().status === 'finished'){
+<div class="tournament-card finished">
+  <div class="tournament-card__header">
+    <div class="tournament-card__badge">
+      <b>&bull;</b> En cours
+    </div>
+    <div class="tournament-card__elo">
+      <p>{{tournament().min_elo}} - {{tournament().max_elo}} ELO</p>
+      <span>{{ tournament().category | join: ' - ' : 'name'}}</span>
+    </div>
+  </div>
+  <h3>{{tournament().name}}</h3>
+  <div class="flex gap-10">
+    <p>{{tournament().location}}</p>
+    <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+  </div>
+  <p>Finished</p>
+</div>
+}
+}

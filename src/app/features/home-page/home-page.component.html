@@ -1,1 +1,10 @@
-<p>home-page works!</p>
+<section class="s-tournaments">
+  <h1>Tournois en cours et à venir</h1>
+  <h2>Explorez l'élite des compétitions d'échecs. Des opens internationaux aux
+    tournois de maîtres, trouvez votre prochain défi intellectuel.</h2>
+  <div class="cards-container">
+    @for(tournament of tournaments(); track tournament.id){
+    <tournament-card [tournament]="tournament" />
+    }
+  </div>
+</section>

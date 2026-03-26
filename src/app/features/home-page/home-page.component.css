@@ -1,0 +1,17 @@
+@reference "../../../tailwind.css";
+
+.s-tournaments{
+  h2{
+
+    padding-top: 15px;
+    @apply md:max-w-1/2;
+  }
+  .cards-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:32px;
+    width: 100%;
+    margin-top: 48px;
+  }
+}
+

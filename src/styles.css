@@ -1,2 +1,56 @@
+:root{
+  --primary-color: #800020;
+  --secondary-color: #242526;
+  --tertiary-color: #4A707A;
+  --in-progress-color:#002C34;
+  --light-grey-color: #F5F5F5;
+  --primary-font: "Newsreader", serif;
+  --secondary-font: "Manrope", sans-serif;
+}
+h1,.title-h1{
+  font-family: var(--primary-font);
+  font-size: 60px;
+  line-height: 1;
+  font-weight: 300;
+  color: var(--primary-color);
+  letter-spacing: -1.5px;
 
+}
+h2,.title-h2{
+  font-family: var(--secondary-font);
+  font-size: 20px;
+  text-transform: uppercase;
+  line-height: 1.6;
+  font-weight: 300;
+  color:var(--secondary-color);
+
+
+}
+h3,.title-h3{
+  font-family: var(--primary-font);
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 300;
+}
+h4,.title-h4{
+  font-family: var(--primary-font);
+}
+h5,.title-h5{
+  font-family: var(--secondary-font);
+}
+h6,.title-h6{
+  font-family: var(--secondary-font);
+}
+body{
+  font-family: var(--secondary-font);
+}
+
+section, header{
+  max-width: 1920px;
+  padding-inline: 40px;
+}
+
+section{
+  padding-block: 50px;
+}
 

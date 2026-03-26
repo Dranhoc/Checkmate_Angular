@@ -1,0 +1,50 @@
+@reference "../../../../tailwind.css";
+
+.tournament-card{
+  width: 100%;
+  background-color: var(--light-grey-color);
+  @apply p-20 md:p-32;
+
+  .tournament-card__badge{
+    width: fit-content;
+    border-radius: 999px;
+    color: white;
+    padding: 4px 12px;
+    margin-bottom: 24px;
+  }
+  &.pending{
+    border-left: 4px solid var(--primary-color);
+    .tournament-card__badge{
+      background-color: var(--primary-color);
+    }
+  }
+  &.in-progress{
+    border-left: 4px solid var(--in-progress-color);
+    .tournament-card__badge{
+      background-color: var(--in-progress-color);
+    }
+  }
+  &.finished{
+    .tournament-card__badge{
+      background-color: var(--in-progress-color);
+    }
+  }
+  &.registered{
+    .tournament-card__badge{
+      background-color: var(--in-progress-color);
+    }
+  }
+  &.complete{
+    .tournament-card__badge{
+      background-color: var(--in-progress-color);
+    }
+  }
+
+  .tournament-card__header{
+    display: flex;
+    justify-content: space-between;
+  }
+  .tournament-card__elo{
+    text-align: right;
+  }
+}
