@@ -16,18 +16,17 @@
         <label for="status-select">status</label>
         <select id="status-select" type="text">
           <option value="">Tous les status</option>
-          <option value="">En attente</option>
-          <option value="">En cours</option>
-          <option value="">Terminé</option>
+          @for(s of status; track $index){
+          <option value={{s}}>{{s}}</option>
+          }
         </select>
       </div>
       <div>
         <label for="category-select">catégorie</label>
         <select id="category-select" type="text">
-          <option value="">Toutes les catégories</option>
-          <option value="">Junior</option>
-          <option value="">Vétéran</option>
-          <option value="">Senior</option>
+          @for(c of categories; track $index){
+          <option value={{c}}>{{c}}</option>
+          }
         </select>
       </div>
       <div>

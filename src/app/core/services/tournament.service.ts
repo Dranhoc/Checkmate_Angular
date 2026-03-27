@@ -5,6 +5,8 @@ import { Tournament } from '@core/models/tournament.interface';
 import { env } from '@env/env';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from './auth.service';
+import { Categories } from '@core/enums/categories.enum';
+import { TournamentStatusCard } from '@core/enums/status.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +27,9 @@ export class TournamentService {
   }
 
   getAllCategories() {
-    return ['Junior', 'Veteran', 'Senior', 'AllAges'];
+    return Object.values(Categories);
+  }
+  getAllStatus() {
+    return Object.values(TournamentStatusCard);
   }
 }
