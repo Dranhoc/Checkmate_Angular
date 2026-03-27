@@ -18,3 +18,16 @@ export interface Tournament {
   participant: string;
   currentMatches: string;
 }
+
+export interface TournamentPayload {
+  name: string;
+  location: string;
+  min_player: number;
+  max_player: number;
+  min_elo: number;
+  max_elo: number;
+  woman_only: false;
+  categories: Array<Category>;
+  current_round: number;
+  end_inscription_date: Date;
+}

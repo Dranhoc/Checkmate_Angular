@@ -12,6 +12,13 @@
   --primary-font: "Newsreader", serif;
   --secondary-font: "Manrope", sans-serif;
 }
+
+body{
+  color:var(--secondary-color);
+  p,li,button,a{
+    color:var(--secondary-color);
+  }
+}
 h1,.title-h1{
   font-family: var(--primary-font);
   font-size: 60px;
@@ -24,10 +31,9 @@ h1,.title-h1{
 h2,.title-h2{
   font-family: var(--secondary-font);
   font-size: 20px;
-  text-transform: uppercase;
   line-height: 1.6;
-  font-weight: 300;
-  color:var(--secondary-color);
+  font-weight: 500;
+  color:var(--mild-grey-color);
 
 
 }
@@ -48,6 +54,12 @@ h6,.title-h6{
 }
 body{
   font-family: var(--secondary-font);
+}
+
+main{
+  margin-top: 60px;
+  margin-inline: auto;
+  max-width: 1920px;
 }
 
 section{
@@ -82,11 +94,13 @@ section{
 }
 
 button, .button{
+cursor:pointer;
 display: flex;
 justify-content: center;
 align-items: center;
 flex-shrink: 0;
-cursor:pointer;
+text-transform: uppercase;
+font-weight: 500;
 padding-block: 8px;
 padding-inline: 20px;
 border: 1px solid;

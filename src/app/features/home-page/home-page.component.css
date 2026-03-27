@@ -11,7 +11,7 @@
   padding-block: 0;
   form{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1.5fr 0.5fr 1fr;
     gap:24px;
     width: 100%;
     border: 1px solid var(--primary-transparent-color);
@@ -31,10 +31,23 @@
         margin-top: -1px;
       }
     }
-    input, select{
+    input:not([type='checkbox']), select{
       width: 100%;
       border: 1px solid var(--primary-transparent-color);
       padding: 8px 13px;
+    }
+    .checkbox{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 26px;
+      label{
+        padding: 0;
+      }
+    }
+    .s-filters__elo-inputs{
+      display: flex;
+      gap: 24px;
     }
   }
 }

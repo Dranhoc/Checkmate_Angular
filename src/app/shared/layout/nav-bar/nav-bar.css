@@ -1,29 +1,35 @@
 @reference "../../../../tailwind.css";
 
 nav{
+  position: fixed;
+  top:0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  @apply shadow-md py-12 px-40;
+  z-index: 10;
+  @apply shadow-md py-12 px-40 backdrop-blur-xl bg-white/70;
   h1{
     font-style: italic;
     font-weight: 200;
     font-size: 24px;
   }
   ul {
+    position: absolute;
+    left:0;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    width: 100%;
-    @apply py-12;
+    width: 100vw;
+    z-index: 9;
   }
   .nav__buttons{
     display: flex;
     align-items: center;
     gap: 8px;
     white-space: nowrap;
+    z-index: 11;
     button,.button{
       text-transform: uppercase;
       font-size: 12px;
