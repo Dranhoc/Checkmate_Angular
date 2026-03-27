@@ -1,14 +1,21 @@
 <nav>
+  <h1>Checkmate</h1>
   <ul>
-    <li><a routerLink="/">Tournaments</a></li>
-    @if(isAdmin()){
-    <li><a routerLink="/tournament/add">Add new Tournament</a></li>
+    <li><a class="header-link" routerLink="/">Tournois</a></li>
+    @if(isConnected()){
+    <li><a class="header-link" routerLink="auth/login">Dashboard</a></li>
+    <li><a class="header-link" routerLink="auth/login">Profil</a></li>
     }
-    @if(!isConnected()){
-    <li><a routerLink="auth/login">Login</a></li>
-    <li><a routerLink="auth/register">Register</a></li>
-    }@else {
-    <li><button (click)="onLogoutBtn()">Logout</button></li>
+    @if(isAdmin()){
+    <li><a class="header-link" routerLink="/tournament/add">Ajouter un tournoi</a></li>
     }
   </ul>
+  <div class="nav__buttons">
+    @if(!isConnected()){
+    <button class="in-progress" routerLink="auth/login">Connexion</button>
+    <button class="pending" routerLink="auth/register">Enregistrement</button>
+    }@else {
+    <button class="registered" (click)="onLogoutBtn()">Déconnexion</button>
+    }
+  </div>
 </nav>

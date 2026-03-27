@@ -1,10 +1,48 @@
-<section class="s-tournaments">
-  <h1>Tournois en cours et à venir</h1>
-  <h2>Explorez l'élite des compétitions d'échecs. Des opens internationaux aux
-    tournois de maîtres, trouvez votre prochain défi intellectuel.</h2>
-  <div class="cards-container">
-    @for(tournament of tournaments(); track tournament.id){
-    <tournament-card [tournament]="tournament" />
-    }
-  </div>
-</section>
+<main>
+
+  <section class="s-title">
+    <h1>Tournois en cours et à venir</h1>
+    <h2>Explorez l'élite des compétitions d'échecs. Des opens internationaux aux
+      tournois de maîtres, trouvez votre prochain défi intellectuel.</h2>
+  </section>
+
+  <section class="s-filters">
+    <form action="">
+      <div>
+        <label for="search-name-input">nom du tournoi</label>
+        <input id="search-name-input" type="text" placeholder="Rechercher...">
+      </div>
+      <div>
+        <label for="status-select">status</label>
+        <select id="status-select" type="text">
+          <option value="">Tous les status</option>
+          <option value="">En attente</option>
+          <option value="">En cours</option>
+          <option value="">Terminé</option>
+        </select>
+      </div>
+      <div>
+        <label for="category-select">catégorie</label>
+        <select id="category-select" type="text">
+          <option value="">Toutes les catégories</option>
+          <option value="">Junior</option>
+          <option value="">Vétéran</option>
+          <option value="">Senior</option>
+        </select>
+      </div>
+      <div>
+        <label for="">&nbsp;</label>
+        <button class="pending w-full">Filtrer</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="s-tournaments">
+    <div class="cards-container">
+      @for(tournament of tournaments(); track tournament.id){
+      <tournament-card [tournament]="tournament" />
+      }
+    </div>
+  </section>
+
+</main>

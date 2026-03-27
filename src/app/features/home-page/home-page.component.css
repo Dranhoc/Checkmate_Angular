@@ -1,17 +1,51 @@
 @reference "../../../tailwind.css";
+.s-title{
 
-.s-tournaments{
   h2{
-
+  
     padding-top: 15px;
     @apply md:max-w-1/2;
   }
+}
+.s-filters{
+  padding-block: 0;
+  form{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap:24px;
+    width: 100%;
+    border: 1px solid var(--primary-transparent-color);
+    padding: 24px;
+
+    label{
+      display: block;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--mild-grey-color);
+      padding-bottom: 8px;
+    }
+    & > *{
+      width: 100%;
+      button{
+        margin-top: -1px;
+      }
+    }
+    input, select{
+      width: 100%;
+      border: 1px solid var(--primary-transparent-color);
+      padding: 8px 13px;
+    }
+  }
+}
+
+.s-tournaments{
   .cards-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap:32px;
     width: 100%;
-    margin-top: 48px;
   }
 }
+
 

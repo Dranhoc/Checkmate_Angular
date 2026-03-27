@@ -23,4 +23,8 @@ export class TournamentService {
 
     return response.data;
   }
+
+  getAllCategories() {
+    return ['Junior', 'Veteran', 'Senior', 'AllAges'];
+  }
 }

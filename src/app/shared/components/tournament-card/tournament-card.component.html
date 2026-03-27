@@ -10,14 +10,17 @@
     </div>
   </div>
   <h3>{{tournament().name}}</h3>
-  <div class="flex gap-5">
+  <div class="tournament-card__location">
     <svg-icon src="/svg/loc.svg" />
     <p>{{tournament().location}}</p>
   </div>
   <p class="tournament-card__status">Clôture des inscriptions : {{tournament().end_inscription_date | date}}</p>
   <div class="tournament-card__footer">
     <router-button [status]="TournamentStatusCard.registered" />
-    <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+    <div class="tournament-card__participants">
+      <svg-icon src="/svg/people.svg" />
+      <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+    </div>
   </div>
 </div>
 
@@ -33,14 +36,17 @@
     </div>
   </div>
   <h3>{{tournament().name}}</h3>
-  <div class="flex gap-5">
+  <div class="tournament-card__location">
     <svg-icon src="/svg/loc.svg" />
     <p>{{tournament().location}}</p>
   </div>
   <p class="tournament-card__status">Inscriptions terminées</p>
   <div class="tournament-card__footer">
     <router-button [status]="TournamentStatusCard.complete" />
-    <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+    <div class="tournament-card__participants">
+      <svg-icon src="/svg/people.svg" />
+      <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+    </div>
   </div>
 </div>
 }
@@ -59,14 +65,17 @@
     </div>
   </div>
   <h3>{{tournament().name}}</h3>
-  <div class="flex gap-5">
+  <div class="tournament-card__location">
     <svg-icon src="/svg/loc.svg" />
     <p>{{tournament().location}}</p>
   </div>
   <p class="tournament-card__status">Clôture des inscriptions : {{tournament().end_inscription_date | date}}</p>
   <div class="tournament-card__footer">
     <router-button [status]="TournamentStatusCard.pending" />
-    <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+    <div class="tournament-card__participants">
+      <svg-icon src="/svg/people.svg" />
+      <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+    </div>
   </div>
 </div>
 
@@ -82,14 +91,17 @@
     </div>
   </div>
   <h3>{{tournament().name}}</h3>
-  <div class="flex gap-5">
+  <div class="tournament-card__location">
     <svg-icon src="/svg/loc.svg" />
     <p>{{tournament().location}}</p>
   </div>
   <p class="tournament-card__status">En cours de déroulement...</p>
   <div class="tournament-card__footer">
     <router-button [status]="TournamentStatusCard.inProgress" />
-    <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+    <div class="tournament-card__participants">
+      <svg-icon src="/svg/people.svg" />
+      <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+    </div>
   </div>
 </div>
 
@@ -105,14 +117,17 @@
     </div>
   </div>
   <h3>{{tournament().name}}</h3>
-  <div class="flex gap-5">
+  <div class="tournament-card__location">
     <svg-icon src="/svg/loc.svg" />
     <p>{{tournament().location}}</p>
   </div>
   <p class="tournament-card__status">Tournoi terminé</p>
   <div class="tournament-card__footer">
     <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
-    <router-button [status]="TournamentStatusCard.finished" />
+    <div class="tournament-card__participants">
+      <svg-icon src="/svg/people.svg" />
+      <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+    </div>
   </div>
 </div>
 }

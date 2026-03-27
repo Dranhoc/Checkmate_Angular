@@ -5,6 +5,20 @@
   background-color: var(--light-grey-color);
   @apply p-20 md:p-32;
 
+  h3{
+    font-weight: 500;
+  }
+  .tournament-card__location, .tournament-card__participants{
+    display: flex;
+    align-items: center;
+    line-height: 0.8;
+    gap:5px;
+    color: var(--mild-grey-color);
+  }
+  .tournament-card__location{
+    margin-bottom: 25px;
+  }
+
   .tournament-card__badge{
     position: relative;
     width: fit-content;
@@ -37,17 +51,20 @@
     }
   }
   &.finished{
+    border-left: 4px solid var(--mild-grey-color);
     .tournament-card__badge{
       background-color: var(--mild-grey-color);
     }
   }
   &.registered{
+    border-left: 4px solid var(--mild-grey-color);
     .tournament-card__badge{
       background-color: var(--mild-grey-transparent-color);
       color:var(--secondary-color);
     }
   }
   &.complete{
+    border-left: 4px solid var(--mild-grey-color);
     .tournament-card__badge{
       background-color: var(--mild-grey-transparent-color);
       color:var(--secondary-color);
