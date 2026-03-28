@@ -1,0 +1,64 @@
+<main class="m-form">
+
+  <section class="s-form__create-tournament">
+    <h1>Mister Checkmate</h1>
+    <form [formGroup]="formCreateTournament" (ngSubmit)="onSubmitCreate()">
+      <h2 class="title-h3">Création de tournoi</h2>
+
+      <div class="input-block">
+        <label for="name-input">Nom du tournoi</label>
+        <input id="name-input" type="text" formControlName="name">
+        <app-forms-error-display [control]="name" name="name" />
+      </div>
+      <div class="input-block">
+        <label for="location-input">Lieu</label>
+        <input id="location-input" type="text" formControlName="location">
+        <app-forms-error-display [control]="location" name="location" />
+      </div>
+      <div class="input-block double">
+        <div class="input-block">
+          <label for="minPlayer-input">Joueurs min</label>
+          <input id="minPlayer-input" type="number" formControlName="min_player">
+          <app-forms-error-display [control]="minPlayer" name="minPlayer" />
+        </div>
+        <div class="input-block">
+          <label for="maxPlayer-input">Joueurs max</label>
+          <input id="maxPlayer-input" type="number" formControlName="max_player">
+          <app-forms-error-display [control]="maxPlayer" name="maxPlayer" />
+        </div>
+      </div>
+      <div class="input-block double">
+        <div class="input-block">
+          <label for="minElo-input">Elo min</label>
+          <input id="minElo-input" type="number" formControlName="min_elo">
+          <app-forms-error-display [control]="minElo" name="minElo" />
+        </div>
+        <div class="input-block">
+          <label for="maxElo-input">Elo max</label>
+          <input id="maxElo-input" type="number" formControlName="max_elo">
+          <app-forms-error-display [control]="maxElo" name="maxElo" />
+        </div>
+      </div>
+      <div class="input-block double">
+        <div class="input-block">
+          <label for="endInscriptionDate-input">Date de fin</label>
+          <input id="endInscriptionDate-input" type="date" formControlName="end_inscription_date">
+        </div>
+        <div class="input-block">
+          <label for="category-select">catégorie</label>
+          <select id="category-select" name="category-select" formControlName="categories">
+            <option value="">Toutes les catégories</option>
+            @for(c of categoriesEnum; track $index){<option value={{c}}>{{c}}</option>}
+          </select>
+        </div>
+      </div>
+      <div class="checkbox">
+        <input id="womanOnly-checkbox" type="checkbox" formControlName="woman_only">
+        <label for="womanOnly-checkbox">Woman only</label>
+      </div>
+
+      <button class='primary-btn' type="submit" [disabled]="formCreateTournament.invalid">Créer le tournoi</button>
+    </form>
+  </section>
+
+</main>

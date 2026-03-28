@@ -229,6 +229,7 @@ transition: background-color 0.2s ease, color 0.2s ease;
         width: 100%;
         gap:16px;
         input,.input-block{
+          width: 50%;
           margin: 0;
         }
       }

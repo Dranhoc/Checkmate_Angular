@@ -26,8 +26,8 @@ export interface TournamentPayload {
   max_player: number;
   min_elo: number;
   max_elo: number;
-  woman_only: false;
+  woman_only: boolean;
   categories: Array<Category>;
   current_round: number;
-  end_inscription_date: Date;
+  end_inscription_date: string;
 }
