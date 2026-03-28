@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { ApiMessageOrError, ApiResponse } from '@core/models/api.interface';
 import { Tournament, TournamentPayload } from '@core/models/tournament.interface';
@@ -18,11 +18,15 @@ export class TournamentService {
 
   authUserId: string = this._authService.userId();
 
-  async getAll(): Promise<Array<Tournament>> {
-    const response = await firstValueFrom(
-      this._httpClient.get<ApiResponse<Array<Tournament>>>(this._apiUrl + '/tournament/'),
-    );
+  async getAll(filters?: Record<string, string>): Promise<Array<Tournament>> {
+    let params = new HttpParams({ fromObject: filters ?? {} });
 
+    const response = await firstValueFrom(
+      this._httpClient.get<ApiResponse<Array<Tournament>>>(this._apiUrl + '/tournament', {
+        params,
+      }),
+    );
+    console.log(response.data);
     return response.data;
   }
 

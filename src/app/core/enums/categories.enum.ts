@@ -1,5 +1,5 @@
 export enum Categories {
-  AllAges = 'Toutes les catégories',
+  AllAges = 'AllAges',
   junior = 'Junior',
   veteran = 'Vétéran',
   senior = 'Senior',

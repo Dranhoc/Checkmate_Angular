@@ -7,14 +7,15 @@
   </section>
 
   <section class="s-filters">
-    <form action="">
+    <form action="submit">
       <div>
         <label for="search-name-input">nom du tournoi</label>
-        <input id="search-name-input" type="text" placeholder="Rechercher...">
+        <input id="search-name-input" name="search-name-input" type="text" placeholder="Rechercher..."
+          [(ngModel)]="tournamentNameSearch">
       </div>
       <div>
         <label for="status-select">status</label>
-        <select id="status-select" type="text">
+        <select id="status-select" name="status-select" [(ngModel)]="tournamentStatusFilter">
           <option value="">Tous les status</option>
           @for(s of status; track $index){
           <option value={{s}}>{{s}}</option>
@@ -23,7 +24,8 @@
       </div>
       <div>
         <label for="category-select">catégorie</label>
-        <select id="category-select" type="text">
+        <select id="category-select" name="category-select" [(ngModel)]="tournamentCategoryFilter">
+          <option value="">Toutes les catégories</option>
           @for(c of categories; track $index){
           <option value={{c}}>{{c}}</option>
           }
@@ -31,36 +33,54 @@
       </div>
 
       <div>
-        <label for="search-name-input">ELO</label>
-        <input id="search-name-input" type="text" placeholder="{{userELO}}">
+        <label for="elo-filter-input">ELO</label>
+        <input id="elo-filter-input" type="number" name="elo-filter-input" [(ngModel)]="tournamentEloFilter"
+          placeholder="{{userELO}}">
       </div>
-      <div>
 
-        <label for="search-name-input">Plage ELO</label>
-        <div class="s-filters__elo-inputs">
-          <input id="search-name-input" type="number" min=0 max=3000 placeholder="Min 0">
-          <input id="search-name-input" type="number" min=0 max=3000 placeholder="Max 3000">
+
+      <div class="s-filters__elo-inputs">
+        <div>
+          <label for="eloFrom-filter-input">Min ELO</label>
+          <input id="eloFrom-filter-input" name="eloFrom-filter-input" type="number" placeholder="1 - 3000"
+            (change)="tournamentEloFromFilter = clampValue(tournamentEloFromFilter)"
+            [(ngModel)]="tournamentEloFromFilter">
+        </div>
+        <div>
+          <label for="eloTo-filter-input">Max Elo</label>
+          <input id="eloTo-filter-input" name="eloTo-filter-input" type="number" placeholder="1 - 3000"
+            (change)="tournamentEloToFilter = clampValue(tournamentEloToFilter)" [(ngModel)]="tournamentEloToFilter">
         </div>
       </div>
 
+
       <div class="checkbox">
-        <input id="search-name-input" type="checkbox">
-        <label for="search-name-input">can register</label>
+        <input id="canRegister-checkbox" name="canRegister-checkbox" type="checkbox"
+          [(ngModel)]="tournamentCanRegisterFilter">
+        <label for="canRegister-checkbox">can register</label>
       </div>
 
       <div>
         <label for="">&nbsp;</label>
-        <button class="pending w-full">Filtrer</button>
+        <button class="pending w-full" (click)="onClickFilter()">Filtrer</button>
       </div>
     </form>
   </section>
 
   <section class="s-tournaments">
+    @if(tournaments().length){
     <div class="cards-container">
       @for(tournament of tournaments(); track tournament.id){
       <tournament-card [tournament]="tournament" />
       }
     </div>
+    }
+    @if(!tournaments().length && !tournamentsError()){
+    <p>Aucun résultat trouvé.</p>
+    }
+    @if(!tournaments().length && tournamentsError()){
+    <p>Quelque chose n'a pas fonctionné.</p>
+    }
   </section>
 
 </main>
