@@ -11,15 +11,35 @@
   The {{name()}} must be maximum of
   {{control().getError('maxlength').requiredLength}} characters
 </p>
-} @if(control().getError('email')){
+}
+@if(control().getError('email')){
 <p>The {{name()}} must be a valid email</p>
-} @if(control().getError('lowercase')){
+}
+@if(control().getError('identifier')){
+<p>Identifiant ou mot de passe invalide</p>
+}
+@if(control().getError('lowercase')){
 <p>The {{name()}} must have a lowercase letter</p>
-} @if(control().getError('uppercase')){
+}
+@if(control().getError('uppercase')){
 <p>The {{name()}} must have an uppercase letter</p>
-} @if(control().getError('number')){
+}
+@if(control().getError('number')){
 <p>The {{name()}} must have a number</p>
-} @if(control().getError('specialChar')){
+}
+@if(control().getError('specialChar')){
 <p>The {{name()}} must have a special character</p>
+}
+@if(control().getError('tooYoung')){
+<p>Vous devez avoir au moins 4 ans</p>
+}
+@if(control().getError('tooOld')){
+<p>Vous avez certainement moins de 120ans.</p>
+}
+@if(control().getError('emailExists')) {
+<p>Cet email est déjà utilisé</p>
+}
+@if(control().getError('pseudoExists')) {
+<p>Ce pseudo est déjà utilisé</p>
 }
 }

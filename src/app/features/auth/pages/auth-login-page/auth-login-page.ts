@@ -16,12 +16,12 @@ export class AuthLoginPage {
   private readonly _router = inject(Router);
   private readonly _authService = inject(AuthService);
 
-  email = new FormControl('', [Validators.required, Validators.email]);
+  identifier = new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required]);
   loginError = signal<boolean>(false);
 
   formLogin = this._fb.group({
-    email: this.email,
+    identifier: this.identifier,
     password: this.password,
   });
 
@@ -29,9 +29,14 @@ export class AuthLoginPage {
     this.formLogin.markAllAsTouched();
 
     if (this.formLogin.valid) {
+      const identifier = this.formLogin.value.identifier!;
+      const password = this.formLogin.value.password!;
+      const isEmail = identifier.includes('@');
+
       console.log(this.formLogin.value);
+
       const response = await this._authService
-        .login(this.formLogin.value.email!, this.formLogin.value.password!)
+        .login(isEmail ? { email: identifier, password } : { pseudo: identifier, password })
         .then(() => {
           this._router.navigate(['/']);
         })

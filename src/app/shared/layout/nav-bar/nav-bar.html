@@ -12,8 +12,8 @@
   </ul>
   <div class="nav__buttons">
     @if(!isConnected()){
-    <button class="in-progress" routerLink="auth/login">Connexion</button>
-    <button class="pending" routerLink="auth/register">Enregistrement</button>
+    <button class="secondary-btn" routerLink="auth/login">Connexion</button>
+    <button class="primary-btn" routerLink="auth/register">Enregistrement</button>
     }@else {
     <button class="registered" (click)="onLogoutBtn()">Déconnexion</button>
     }

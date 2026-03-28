@@ -1,22 +1,24 @@
-<main>
+<main class="m-form">
   <section class="s-form-login">
+    <h1>Mister Checkmate</h1>
     <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
-      <div>
-        <label for="email-input">Email : </label>
-        <input type="email" id="email-input" formControlName="email"
-          [ngClass]="{'input-error' : email.invalid && email.touched}">
-        <app-forms-error-display [control]="email" name="email" />
+      <h2 class="title-h3">Connexion</h2>
+      <p class="subtitle">Rejoignez l'élite du jeu d'échecs.</p>
+      <div class="input-block">
+        <label for="identifier-input">Pseudo ou email</label>
+        <input type="text" id="identifier-input" formControlName="identifier"
+          [ngClass]="{'input-error' : identifier.invalid && identifier.touched}">
       </div>
-      <div>
-        <label for="password-input">Password : </label>
+      <div class="input-block">
+        <label for="password-input">Password</label>
         <input type="password" id="password-input" formControlName="password">
-        <app-forms-error-display [control]="password" name="password" />
       </div>
       @if(loginError()){
-      <p class="color-red">Invalid Credentials</p>
+      <p class="!text-red-700">Identifiant ou mot de passe invalide</p>
       }
-      <button type="submit" [disabled]="formLogin.invalid">Login</button>
+      <button class='primary-btn' type="submit" [disabled]="formLogin.invalid">se connecter</button>
+      <span class="switch-form">Pas encore de compte ?<a class="header-link" routerLink="/auth/register">
+          S'enregistrer</a></span>
     </form>
-    <a routerLink="/auth/register">Do you want to create a account?</a>
   </section>
 </main>

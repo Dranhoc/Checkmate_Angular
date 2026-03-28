@@ -10,8 +10,10 @@ export interface JwtDecoded extends JwtPayload {
 }
 
 export interface RegisterData {
-  firstname: string;
-  lastname: string;
+  pseudo: string;
+  gender: string;
+  birthDate: string;
   email: string;
   password: string;
+  elo?: string;
 }

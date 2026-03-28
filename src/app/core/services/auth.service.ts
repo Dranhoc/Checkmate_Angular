@@ -52,12 +52,13 @@ export class AuthService {
     }
   }
 
-  async login(email: string, password: string): Promise<void | string> {
+  async login(payload: {
+    email?: string;
+    pseudo?: string;
+    password: string;
+  }): Promise<void | string> {
     const response = await firstValueFrom(
-      this._httpClient.post<LoginResponse>(this._apiUrl + '/auth/login', {
-        email,
-        password,
-      }),
+      this._httpClient.post<LoginResponse>(this._apiUrl + '/auth/login', payload),
     );
     this._authToken.set(response.token);
   }

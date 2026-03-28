@@ -1,24 +1,45 @@
-<form [formGroup]="formRegister" (ngSubmit)="onSubmitRegister()">
-  <div>
-    <label for="firstname-input">Firstname : </label>
-    <input id="firstname-input" type="text" formControlName="firstname">
-    <app-forms-error-display [control]="firstname" name="firstname" />
-  </div>
-  <div>
-    <label for="lastname-input">Lastname : </label>
-    <input id="lastname-input" type="text" formControlName="lastname">
-    <app-forms-error-display [control]="lastname" name="lastname" />
-  </div>
-  <div>
-    <label for="email-input">Email : </label>
-    <input id="email-input" type="email" formControlName="email">
-    <app-forms-error-display [control]="email" name="email" />
-  </div>
-  <div>
-    <label for="password-input">Password : </label>
-    <input id="password-input" type="password" formControlName="password">
-    <app-forms-error-display [control]="password" name="password" />
-  </div>
-  <button type="submit" [disabled]="formRegister.invalid">Sign up</button>
+<main class="m-form">
 
-</form>
+  <section class="s-form__register">
+    <h1>Mister Checkmate</h1>
+    <form [formGroup]="formRegister" (ngSubmit)="onSubmitRegister()">
+      <h2 class="title-h3">Inscription</h2>
+      <p class="subtitle">Rejoignez l'élite du jeu d'échecs.</p>
+      <div class="input-block">
+        <label for="pseudo-input">Pseudo</label>
+        <input id="pseudo-input" type="text" formControlName="pseudo">
+        <app-forms-error-display [control]="pseudo" name="pseudo" />
+      </div>
+      <div class="input-block">
+        <label for="email-input">Email</label>
+        <input id="email-input" type="email" formControlName="email">
+        <app-forms-error-display [control]="email" name="email" />
+      </div>
+      <div class="input-block double">
+        <div class="input-block">
+          <label for="birthDate-input">Date de naissance</label>
+          <input id="birthDate-input" type="date" formControlName="birthDate">
+        </div>
+        <div class="input-block">
+          <label for="genre-input">Genre</label>
+          <select id="genre-input" formControlName="gender">
+            @for(g of genderOpt; track $index){
+            <option value="{{g}}">{{g}}</option>
+            }
+          </select>
+        </div>
+      </div>
+      <app-forms-error-display [control]="birthDate" name="birthDate" />
+      <div class="input-block">
+        <label for="password-input">Mot de passe</label>
+        <input id="password-input" type="password" formControlName="password">
+        <app-forms-error-display [control]="password" name="password" />
+      </div>
+      <button class='primary-btn' type="submit" [disabled]="formRegister.invalid">s'enregistrer</button>
+      <span class="switch-form">Déjà un compte ?<a class="header-link" routerLink="/auth/register">
+          Se connecter</a></span>
+
+    </form>
+  </section>
+
+</main>
