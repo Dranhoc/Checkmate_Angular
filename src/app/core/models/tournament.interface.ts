@@ -1,4 +1,5 @@
 import { Status } from '@core/enums/status.enum';
+import { Categories } from '@core/enums/categories.enum';
 import { Category } from './category.interface';
 
 export interface Tournament {
@@ -27,7 +28,8 @@ export interface TournamentPayload {
   min_elo: number;
   max_elo: number;
   woman_only: boolean;
-  categories: Array<Category>;
+  categories: Array<Categories>;
   current_round: number;
   end_inscription_date: string;
+  status: string;
 }

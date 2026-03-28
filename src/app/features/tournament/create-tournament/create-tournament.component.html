@@ -44,17 +44,22 @@
           <label for="endInscriptionDate-input">Date de fin</label>
           <input id="endInscriptionDate-input" type="date" formControlName="end_inscription_date">
         </div>
-        <div class="input-block">
-          <label for="category-select">catégorie</label>
-          <select id="category-select" name="category-select" formControlName="categories">
-            <option value="">Toutes les catégories</option>
-            @for(c of categoriesEnum; track $index){<option value={{c}}>{{c}}</option>}
-          </select>
-        </div>
       </div>
-      <div class="checkbox">
-        <input id="womanOnly-checkbox" type="checkbox" formControlName="woman_only">
-        <label for="womanOnly-checkbox">Woman only</label>
+      <div class="input-block">
+        <label>Catégories</label>
+        <div class="checkboxes-group">
+          @for(c of categoriesEnum; track $index){
+          <div class="checkbox">
+            <input type="checkbox" [id]="'category-' + c" [value]="c" (change)="onCategoryChange($event, c)"
+              [checked]="categories.value?.includes(c)">
+            <label [for]="'category-' + c">{{c}}</label>
+          </div>
+          }
+          <div class="checkbox">
+            <input id="womanOnly-checkbox" type="checkbox" formControlName="woman_only">
+            <label for="womanOnly-checkbox">Woman only</label>
+          </div>
+        </div>
       </div>
 
       <button class='primary-btn' type="submit" [disabled]="formCreateTournament.invalid">Créer le tournoi</button>
