@@ -71,7 +71,8 @@
   </div>
   <p class="tournament-card__status">Clôture des inscriptions : {{tournament().end_inscription_date | date}}</p>
   <div class="tournament-card__footer">
-    <router-button [status]="TournamentStatusCard.pending" />
+    <router-button [status]="TournamentStatusCard.pending" [tournamentCanRegister]="canRegister()"
+      [tournamentId]="tournament().id" />
     <div class="tournament-card__participants">
       <svg-icon src="/svg/people.svg" />
       <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
@@ -97,7 +98,7 @@
   </div>
   <p class="tournament-card__status">En cours de déroulement...</p>
   <div class="tournament-card__footer">
-    <router-button [status]="TournamentStatusCard.inProgress" />
+    <router-button [status]="TournamentStatusCard.inProgress" [tournamentId]="tournament().id" />
     <div class="tournament-card__participants">
       <svg-icon src="/svg/people.svg" />
       <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
@@ -123,7 +124,7 @@
   </div>
   <p class="tournament-card__status">Tournoi terminé</p>
   <div class="tournament-card__footer">
-    <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
+    <router-button [status]="TournamentStatusCard.finished" [tournamentId]="tournament().id" />
     <div class="tournament-card__participants">
       <svg-icon src="/svg/people.svg" />
       <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>

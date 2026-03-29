@@ -5,4 +5,12 @@
 }
 button{
   width: 100%;
+  
+}
+button.pending:disabled{
+  cursor: auto;
+  color:#bdbdbdf4;
+  &:hover{
+    pointer-events: none;
+  }
 }

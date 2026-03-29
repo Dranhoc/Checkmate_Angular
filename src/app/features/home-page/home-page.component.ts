@@ -24,9 +24,10 @@ export class HomePageComponent {
   protected readonly status: Array<string> = this._tournamentService.getAllStatus();
 
   tournaments = signal<Array<Tournament>>([]);
+  tournamentsCanRegister = signal<Array<Tournament>>([]);
   tournamentsError = signal<string>('');
 
-  userId = this._authService.userId();
+  userId = '';
   userELO: number | null = null;
 
   tournamentNameSearch: string | null = null;
@@ -38,7 +39,11 @@ export class HomePageComponent {
   tournamentCanRegisterFilter: boolean | null = null;
 
   async ngOnInit() {
+    this.userId = await this._authService.userId();
     if (this.userId) {
+      this.tournamentsCanRegister.set(
+        await this._tournamentService.getAll({ canRegister: 'true' }),
+      );
       const user = await this._userService.getById(this.userId);
       this.userELO = user.data.elo;
     }

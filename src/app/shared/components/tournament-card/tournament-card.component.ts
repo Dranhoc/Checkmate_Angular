@@ -22,6 +22,7 @@ export class TournamentCardComponent {
 
   authUserId: string = this._authService.userId();
   tournament = input.required<Tournament>();
+  tournamentCanRegister = input<Array<Tournament>>();
 
   isRegistered(): boolean {
     console.log('id : ', this.authUserId);
@@ -31,5 +32,11 @@ export class TournamentCardComponent {
   }
   isComplete(): boolean {
     return this.tournament().max_player <= this.tournament().participantsCount;
+  }
+
+  canRegister(): boolean | undefined {
+    return this.tournamentCanRegister()?.some(
+      (tournament) => tournament.id === this.tournament().id,
+    );
   }
 }
