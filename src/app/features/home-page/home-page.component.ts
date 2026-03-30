@@ -39,7 +39,7 @@ export class HomePageComponent {
   tournamentCanRegisterFilter: boolean | null = null;
 
   async ngOnInit() {
-    this.userId = await this._authService.userId();
+    this.userId = this._authService.userId();
     if (this.userId) {
       this.tournamentsCanRegister.set(
         await this._tournamentService.getAll({ canRegister: 'true' }),
@@ -54,8 +54,7 @@ export class HomePageComponent {
           this.tournaments.set(await this._tournamentService.getAll(queryParams));
         } catch (error) {
           const e = error as Error;
-          console.log(error);
-          this.tournamentsError.set(e.message);
+          this.tournamentsError.set(e?.message);
         }
       },
     });

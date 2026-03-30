@@ -141,6 +141,15 @@ transition: background-color 0.2s ease, color 0.2s ease;
     color: var(--mild-grey-color); 
     border-color: var(--mild-grey-transparent-color);
   }
+  &.start{
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+  }
+  &.start:hover{
+    background-color: white;
+    color: var(--secondary-color);
+  }
 }
 
 .m-form{

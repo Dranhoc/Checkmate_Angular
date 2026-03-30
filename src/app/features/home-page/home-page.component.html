@@ -71,7 +71,7 @@
     @if(tournaments().length){
     <div class="cards-container">
       @for(tournament of tournaments(); track tournament.id){
-      <tournament-card [tournament]="tournament" [tournamentCanRegister]="tournamentsCanRegister()" />
+      <tournament-card [tournament]="tournament" [tournamentsCanRegister]="tournamentsCanRegister()" />
       }
     </div>
     }

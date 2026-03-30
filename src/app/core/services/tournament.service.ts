@@ -47,6 +47,15 @@ export class TournamentService {
     return response;
   }
 
+  async canRegister(tournamentId: number, userId: string): Promise<boolean> {
+    const response = await firstValueFrom(
+      this._httpClient.get<boolean>(
+        this._apiUrl + '/tournament/can-register/' + tournamentId + '/user/' + userId,
+      ),
+    );
+    return response;
+  }
+
   async create(
     payload: TournamentPayload,
   ): Promise<ApiResponse<TournamentPayload> | ApiMessageOrError> {
@@ -68,11 +77,12 @@ export class TournamentService {
     return response;
   }
 
-  async getById(tournamentId: number): Promise<ApiResponse<Tournament>> {
+  async getById(tournamentId: number): Promise<Tournament> {
     const response = await firstValueFrom(
       this._httpClient.get<ApiResponse<Tournament>>(this._apiUrl + '/tournament/' + tournamentId),
     );
-    return response;
+    const data = response.data;
+    return data;
   }
 
   async start(tournamentId: number): Promise<ApiMessageOrError> {
