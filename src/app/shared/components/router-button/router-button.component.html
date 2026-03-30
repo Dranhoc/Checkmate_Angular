@@ -1,4 +1,4 @@
-<button class={{status()}} [disabled]="isDisabled()" (click)="navigateOnClick()">
+<button class={{status()}} [disabled]="isDisabled()" (click)="onClick()">
   @if(status() === TournamentStatusCard.pending){
   @if(isDisabled()){
   Vous ne remplissez pas les conditions
@@ -15,3 +15,6 @@
   Se désinscrire
   }
 </button>
+@if(registerError()){
+<p class="error-message">{{registerError()}}</p>
+}

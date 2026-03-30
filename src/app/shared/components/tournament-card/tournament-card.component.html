@@ -16,7 +16,8 @@
   </div>
   <p class="tournament-card__status">Clôture des inscriptions : {{tournament().end_inscription_date | date}}</p>
   <div class="tournament-card__footer">
-    <router-button [status]="TournamentStatusCard.registered" />
+    <router-button [status]="TournamentStatusCard.registered" [tournamentId]="tournament().id"
+      [detailsPage]="detailsPage()" (actionDone)="refreshNeeded.emit()" />
 
     <div class="tournament-card__participants">
       <svg-icon src="/svg/people.svg" />
@@ -24,7 +25,7 @@
     </div>
     @if(detailsPage()&& isAdmin){
     <button class="start" (click)="startTournament()">Démarrer le tournoi</button>
-    <p class="!text-red-700 text-right pt-10">{{startError()}}</p>
+    <p class="error-message text-right pt-10">{{startError()}}</p>
     }
   </div>
 </div>
@@ -47,14 +48,14 @@
   </div>
   <p class="tournament-card__status">Inscriptions terminées</p>
   <div class="tournament-card__footer">
-    <router-button [status]="TournamentStatusCard.complete" />
+    <router-button [status]="TournamentStatusCard.complete" [tournamentId]="tournament().id" />
     <div class="tournament-card__participants">
       <svg-icon src="/svg/people.svg" />
       <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
     </div>
     @if(detailsPage()&& isAdmin){
     <button class="start" (click)="startTournament()">Démarrer le tournoi</button>
-    <p class="!text-red-700 text-right pt-10">{{startError()}}</p>
+    <p class="error-message text-right pt-10">{{startError()}}</p>
     }
   </div>
 </div>
@@ -81,7 +82,7 @@
   <p class="tournament-card__status">Clôture des inscriptions : {{tournament().end_inscription_date | date}}</p>
   <div class="tournament-card__footer">
     <router-button [status]="TournamentStatusCard.pending" [tournamentCanRegister]="canRegister()"
-      [tournamentId]="tournament().id" />
+      [tournamentId]="tournament().id" [detailsPage]="detailsPage()" (actionDone)="refreshNeeded.emit()" />
     <div class="tournament-card__participants">
       <svg-icon src="/svg/people.svg" />
       <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
@@ -90,7 +91,7 @@
     <button class="start" (click)="startTournament()">Démarrer le tournoi</button>
     }
   </div>
-  <p class="!text-red-700 text-right pt-10">{{startError()}}</p>
+  <p class="error-message text-right pt-10">{{startError()}}</p>
 </div>
 
 }@else if(tournament().status === 'inProgress'){

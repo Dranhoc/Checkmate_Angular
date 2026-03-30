@@ -2,7 +2,7 @@
   <section class="s-header">
     @if(tournament()) {
     <tournament-card [tournament]="tournament()!" [tournamentCanRegister]="tournamentCanRegister()"
-      [detailsPage]="true" />
+      (refreshNeeded)="onRefresh()" [detailsPage]="true" />
     } @else {
     <p>Chargement...</p>
     }

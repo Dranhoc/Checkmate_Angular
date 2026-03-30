@@ -70,6 +70,11 @@ section{
   padding-block: 50px;
 }
 
+.error-message{
+  color:var(--primary-color) !important;
+  font-weight: 500;
+}
+
 
 .header-link{
   position: relative;

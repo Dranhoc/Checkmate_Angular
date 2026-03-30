@@ -38,4 +38,13 @@ export class TournamentDetailsComponent {
       }
     }
   }
+  async onRefresh() {
+    this.tournamentCanRegister.set(
+      await this._tournamentService.canRegister(+this.tournamentId!, this.userId),
+    );
+    const id = this._activatedRoute.snapshot.paramMap.get('id');
+    if (id) {
+      this.tournament.set(await this._tournamentService.getById(+id));
+    }
+  }
 }

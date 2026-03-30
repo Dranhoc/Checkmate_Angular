@@ -1,5 +1,5 @@
 import { DatePipe, NgClass } from '@angular/common';
-import { Component, inject, input, signal } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Tournament } from '@core/models/tournament.interface';
 import { JoinPipe } from '@core/pipes/join.pipe';
@@ -28,6 +28,7 @@ export class TournamentCardComponent {
   tournamentCanRegister = input<boolean>();
   detailsPage = input<boolean>();
   startError = signal('');
+  refreshNeeded = output();
 
   isRegistered(): boolean {
     const participants = this.tournament().participant;

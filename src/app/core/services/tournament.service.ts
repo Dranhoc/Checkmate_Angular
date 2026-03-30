@@ -68,10 +68,10 @@ export class TournamentService {
     return response;
   }
 
-  async delete(tournamentId: number): Promise<ApiMessageOrError> {
+  async unsubscribe(tournamentId: number): Promise<ApiMessageOrError> {
     const response = await firstValueFrom(
       this._httpClient.delete<ApiMessageOrError>(
-        this._apiUrl + '/tournament/unsuscribe/' + tournamentId,
+        this._apiUrl + '/tournament/unsubscribe/' + tournamentId,
       ),
     );
     return response;
