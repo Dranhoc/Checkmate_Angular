@@ -1,6 +1,7 @@
 import { Status } from '@core/enums/status.enum';
 import { Categories } from '@core/enums/categories.enum';
 import { Category } from './category.interface';
+import { UserData } from './user.interface';
 
 export interface Tournament {
   id: number;
@@ -16,7 +17,7 @@ export interface Tournament {
   status: Status;
   category: Array<Category>;
   participantsCount: number;
-  participant: string;
+  participant: Array<UserData>;
   currentMatches: string;
 }
 

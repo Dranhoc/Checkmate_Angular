@@ -1,5 +1,5 @@
 <main class="m-tournament-details">
-  <section class="s-header">
+  <section class="s-tournament-card">
     @if(tournament()) {
     <tournament-card [tournament]="tournament()!" [tournamentCanRegister]="tournamentCanRegister()"
       (refreshNeeded)="onRefresh()" [detailsPage]="true" />
@@ -7,4 +7,47 @@
     <p>Chargement...</p>
     }
   </section>
+
+  @if(tournament()?.participant){
+  <section class="s-players">
+    <div class="section-header">
+      <h2 class="title-h3">Joueurs inscrits</h2>
+      <p>{{tournament()?.participantsCount}} participants</p>
+    </div>
+    <table>
+      <tr class="th">
+        <td>Pseudo</td>
+        <td>Elo</td>
+        <td>Âge</td>
+        <td>Genre</td>
+      </tr>
+      <div class="table-container">
+        @for(player of tournament()?.participant; track player.id){
+        <tr>
+          <td class="pseudo">{{player.pseudo}}</td>
+          <td class="elo">{{player.elo}}</td>
+          <td class="birtdate">{{getAge(player.birthDate)}} ans</td>
+          <td class="gender">
+            @if(player.gender === 'male'){ Homme }
+            @else if(player.gender === 'female'){ Femme }
+            @else if(player.gender === 'other'){ Autre }
+          </td>
+        </tr>
+        }
+      </div>
+    </table>
+  </section>
+  <section class="s-round">
+    <div class="section-header">
+      <h2 class="title-h3">Rencontre de la ronde</h2>
+      <p>Ronde {{tournament()?.current_round}} en cours</p>
+    </div>
+  </section>
+  <section class="s-scores">
+    <div class="section-header">
+      <h2 class="title-h3">Tableau des scores</h2>
+      <p>Mis à jour il y a X minutes</p>
+    </div>
+  </section>
+  }
 </main>

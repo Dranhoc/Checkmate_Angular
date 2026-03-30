@@ -2,9 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiResponse } from '@core/models/api.interface';
 import { Tournament } from '@core/models/tournament.interface';
+import { UserData } from '@core/models/user.interface';
 import { AuthService } from '@core/services/auth.service';
 import { TournamentService } from '@core/services/tournament.service';
 import { TournamentCardComponent } from '@shared/components/tournament-card/tournament-card.component';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'tournament-details',
@@ -46,5 +48,8 @@ export class TournamentDetailsComponent {
     if (id) {
       this.tournament.set(await this._tournamentService.getById(+id));
     }
+  }
+  getAge(birthDate: string | Date): number {
+    return dayjs().diff(dayjs(birthDate), 'year');
   }
 }
