@@ -3,7 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { ApiMessageOrError, ApiResponse } from '@core/models/api.interface';
 import { Tournament, TournamentPayload } from '@core/models/tournament.interface';
 import { env } from '@env/env';
-import { firstValueFrom } from 'rxjs';
+import { catchError, firstValueFrom, of } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Categories } from '@core/enums/categories.enum';
 import { TournamentStatusCard } from '@core/enums/status.enum';
@@ -48,12 +48,11 @@ export class TournamentService {
   }
 
   async canRegister(tournamentId: number, userId: string): Promise<boolean> {
-    const response = await firstValueFrom(
-      this._httpClient.get<boolean>(
-        this._apiUrl + '/tournament/can-register/' + tournamentId + '/user/' + userId,
-      ),
+    return firstValueFrom(
+      this._httpClient
+        .get<boolean>(`${this._apiUrl}/tournament/can-register/${tournamentId}/user/${userId}`)
+        .pipe(catchError(() => of(false))),
     );
-    return response;
   }
 
   async create(

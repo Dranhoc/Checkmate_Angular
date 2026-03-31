@@ -39,9 +39,29 @@
   </section>
   <section class="s-round">
     <div class="section-header">
-      <h2 class="title-h3">Rencontre de la ronde</h2>
-      <p>Ronde {{tournament()?.current_round}} en cours</p>
+      <h2 class="title-h3">Rencontres de la ronde</h2>
+      <p class="round-badge">Ronde {{tournament()?.current_round}} en cours</p>
     </div>
+
+    <div class="match-container">
+      @for(match of tournament()?.currentMatches; track match.id){
+      <div class="match">
+        <div class="white-player">
+          <span>Blanc</span>
+          <span>{{match.whitePlaying.pseudo}}</span>
+        </div>
+        <div class="result">
+          <span>Vainqueur</span>
+          <span>{{match.result}}</span>
+        </div>
+        <div class="black-player">
+          <span>Noir</span>
+          <span>{{match.blackPlaying.pseudo}}</span>
+        </div>
+      </div>
+      }
+    </div>
+
   </section>
   <section class="s-scores">
     <div class="section-header">
