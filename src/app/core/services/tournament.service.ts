@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 import { Categories } from '@core/enums/categories.enum';
 import { TournamentStatusCard } from '@core/enums/status.enum';
 import { PayloadMatchUpdate } from '@core/models/match.interface';
+import { Score } from '@core/models/score.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +31,7 @@ export class TournamentService {
     console.log(response.data);
     return response.data;
   }
-
+  //TODO check categories in express not in interface
   getAllCategories() {
     return Object.values(Categories);
   }
@@ -114,5 +115,14 @@ export class TournamentService {
       ),
     );
     return response;
+  }
+
+  async getScore(tournamentId: number): Promise<Array<Score>> {
+    const response = await firstValueFrom(
+      this._httpClient.get<ApiResponse<Array<Score>>>(
+        this._apiUrl + '/tournament/score/' + tournamentId,
+      ),
+    );
+    return response.data;
   }
 }

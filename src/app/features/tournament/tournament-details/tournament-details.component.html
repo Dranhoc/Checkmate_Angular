@@ -80,11 +80,36 @@
     </div>
 
   </section>
+  @if(scoreBoard().length){
+
   <section class="s-scores">
     <div class="section-header">
       <h2 class="title-h3">Tableau des scores</h2>
       <p>Mis à jour il y a {{updateTime()}} minutes</p>
     </div>
+    <table class="s-scores__table">
+      <tr class="th">
+        <td>Rang</td>
+        <td>Joueur</td>
+        <td>V</td>
+        <td>D</td>
+        <td>E</td>
+        <td>Score</td>
+      </tr>
+      <div class="table-container">
+        @for(score of scoreBoard(); track $index){
+        <tr>
+          <td>{{$index}}</td>
+          <td>{{score.pseudo}}</td>
+          <td>{{score.victory}}</td>
+          <td>{{score.defeat}}</td>
+          <td>{{score.draw}}</td>
+          <td class="score">{{score.score}}</td>
+        </tr>
+        }
+      </div>
+    </table>
   </section>
+  }
   }
 </main>

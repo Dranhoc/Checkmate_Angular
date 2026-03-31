@@ -43,14 +43,28 @@
       border-bottom: 1px solid var(--mild-grey-transparent-color);
       font-weight: 600;
 
-      td:nth-child(2) {
+      td:first-of-type {
+        justify-self: left;
+      }
+      td {
         justify-self: center;
       }
-      td:nth-child(3) {
-        justify-self: center;
-      }
-      td:nth-child(4) {
+      td:last-of-type {
         justify-self: end;
+      }
+    }
+    &.s-scores__table{
+      tr{
+        grid-template-columns: 100px repeat(5,1fr);
+      }
+      td:nth-child(2){
+        justify-self: left;
+      }
+      .score {
+      font-family: var(--primary-font);
+      color: var(--primary-color);
+      font-weight: 600;
+      font-size: 20px;
       }
     }
   }

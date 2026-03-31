@@ -2,6 +2,7 @@ import { NgClass } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Status } from '@core/enums/status.enum';
+import { Score } from '@core/models/score.interface';
 import { Tournament } from '@core/models/tournament.interface';
 import { AuthService } from '@core/services/auth.service';
 import { TournamentService } from '@core/services/tournament.service';
@@ -30,6 +31,7 @@ export class TournamentDetailsComponent {
   updateTime = signal<number>(0);
   isAdmin = signal<boolean>(true);
   errorUpdate = signal({ id: 0, message: '' });
+  scoreBoard = signal<Array<Score>>([]);
 
   userId = '';
 
@@ -38,6 +40,7 @@ export class TournamentDetailsComponent {
     this.userId = this._authService.userId();
     if (this.tournamentId) {
       this.tournament.set(await this._tournamentService.getById(+this.tournamentId));
+      this.scoreBoard.set(await this._tournamentService.getScore(+this.tournamentId));
 
       if (this.userId) {
         const canRegister = await this._tournamentService.canRegister(
