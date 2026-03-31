@@ -25,9 +25,9 @@
     </div>
     @if(detailsPage()&& isAdmin && tournament().status === 'pending'){
     <button class="start" (click)="startTournament()">Démarrer le tournoi</button>
-    <p class="error-message text-right pt-10">{{startError()}}</p>
     }
   </div>
+  <p class="error-message text-right pt-10">{{startError()}}</p>
 </div>
 
 }@else if(isComplete()){
@@ -55,9 +55,9 @@
     </div>
     @if(detailsPage()&& isAdmin && tournament().status === 'pending'){
     <button class="start" (click)="startTournament()">Démarrer le tournoi</button>
-    <p class="error-message text-right pt-10">{{startError()}}</p>
     }
   </div>
+  <p class="error-message text-right pt-10">{{startError()}}</p>
 </div>
 }
 
@@ -117,7 +117,11 @@
       <svg-icon src="/svg/people.svg" />
       <p>{{tournament().participantsCount}} / {{tournament().max_player}} Joueurs</p>
     </div>
+    @if(detailsPage()&& isAdmin){
+    <button class="start" (click)="nextRound()">Ronde suivante</button>
+    }
   </div>
+  <p class="error-message text-right pt-10">{{startError()}}</p>
 </div>
 
 }@else if(tournament().status === 'finished'){

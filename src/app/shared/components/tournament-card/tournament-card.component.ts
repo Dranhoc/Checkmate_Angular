@@ -9,6 +9,7 @@ import { TournamentStatusCard } from '@core/enums/status.enum';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { TournamentService } from '@core/services/tournament.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ApiResponse } from '@core/models/api.interface';
 
 @Component({
   selector: 'tournament-card',
@@ -49,6 +50,16 @@ export class TournamentCardComponent {
   async startTournament() {
     try {
       await this._tournamentService.start(this.tournament().id);
+    } catch (err) {
+      if (err instanceof HttpErrorResponse) {
+        this.startError.set(err.error.message);
+      }
+    }
+  }
+  async nextRound() {
+    try {
+      await this._tournamentService.nextRound(this.tournament().id);
+      this.refreshNeeded.emit();
     } catch (err) {
       if (err instanceof HttpErrorResponse) {
         this.startError.set(err.error.message);

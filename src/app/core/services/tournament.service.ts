@@ -93,4 +93,14 @@ export class TournamentService {
     );
     return response;
   }
+
+  async nextRound(tournamentId: number): Promise<ApiResponse<Tournament>> {
+    const response = await firstValueFrom(
+      this._httpClient.post<ApiResponse<Tournament>>(
+        this._apiUrl + '/tournament/next-round/' + tournamentId,
+        null,
+      ),
+    );
+    return response;
+  }
 }

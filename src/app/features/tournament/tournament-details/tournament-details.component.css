@@ -84,8 +84,8 @@
       gap:20px;
       margin-top: 24px;
       .match{
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
         padding: 48px;
         background-color: white;
         border-left: 4px solid var(--primary-transparent-color);
