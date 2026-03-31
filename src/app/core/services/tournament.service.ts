@@ -1,5 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ApiMessageOrError, ApiResponse } from '@core/models/api.interface';
 import { Tournament, TournamentPayload } from '@core/models/tournament.interface';
 import { env } from '@env/env';
@@ -7,6 +7,7 @@ import { catchError, firstValueFrom, of } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Categories } from '@core/enums/categories.enum';
 import { TournamentStatusCard } from '@core/enums/status.enum';
+import { PayloadMatchUpdate } from '@core/models/match.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -89,6 +90,17 @@ export class TournamentService {
       this._httpClient.post<ApiMessageOrError>(
         this._apiUrl + '/tournament/start/' + tournamentId,
         null,
+      ),
+    );
+    return response;
+  }
+  async updateMatch(payload: PayloadMatchUpdate, matchId: number): Promise<ApiMessageOrError> {
+    console.log(payload);
+
+    const response = await firstValueFrom(
+      this._httpClient.put<ApiMessageOrError>(
+        this._apiUrl + '/tournament/match/' + matchId,
+        payload,
       ),
     );
     return response;

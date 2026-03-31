@@ -1,4 +1,4 @@
-<main class="m-tournament-details">
+<main class="m-tournament-details" [ngClass]="{'admin':isAdmin()}">
   <section class="s-tournament-card">
     @if(tournament()) {
     <tournament-card [tournament]="tournament()!" [tournamentCanRegister]="tournamentCanRegister()"
@@ -45,7 +45,7 @@
 
     <div class="match-container">
       @for(match of tournament()?.currentMatches; track match.id){
-      <div class="match">
+      <div class="match" [ngClass]="{'admin':isAdmin()}">
         <div class="white-player">
           <span>Blanc</span>
           <span>{{match.whitePlaying.pseudo}}</span>
@@ -59,11 +59,22 @@
 
           </span>
           <span>{{match.result}}</span>
+          @if(errorUpdate().id === match.id){
+          <p class="error-message">{{errorUpdate().message}}</p>
+          }
         </div>
         <div class="black-player">
           <span>Noir</span>
           <span>{{match.blackPlaying.pseudo}}</span>
         </div>
+        @if(isAdmin()){
+
+
+        <button class="start" (click)="setResult(match.id,match.whitePlaying.id, 'false')">White wins</button>
+        <button class="start" (click)="setResult(match.id, null, 'true')">Draw</button>
+        <button class="start" (click)="setResult(match.id, match.blackPlaying.id, 'false')">Black wins</button>
+
+        }
       </div>
       }
     </div>
@@ -72,7 +83,7 @@
   <section class="s-scores">
     <div class="section-header">
       <h2 class="title-h3">Tableau des scores</h2>
-      <p>Mis à jour il y a X minutes</p>
+      <p>Mis à jour il y a {{updateTime()}} minutes</p>
     </div>
   </section>
   }

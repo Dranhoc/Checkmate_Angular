@@ -11,7 +11,7 @@ export interface Match {
   status: Status;
 }
 export interface MatchWithPlayers extends Match {
-  result: string;
+  result?: string;
   whitePlaying: {
     id: string;
     pseudo: string;
@@ -22,4 +22,11 @@ export interface MatchWithPlayers extends Match {
     pseudo: string;
     elo: number;
   };
+  updatedAt?: Date;
+}
+
+export interface PayloadMatchUpdate {
+  winner: string | null;
+  isNull: string;
+  status: string;
 }

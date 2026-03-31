@@ -86,9 +86,17 @@
       .match{
         display: grid;
         grid-template-columns: repeat(3,1fr);
+        column-gap: 10px;
         padding: 48px;
         background-color: white;
         border-left: 4px solid var(--primary-transparent-color);
+        &.admin{
+          grid-template-rows: 1fr 30px;
+          row-gap: 48px;
+          .start{
+            font-weight: 700;
+          }
+        }
         & > * {
           display: flex;
           flex-direction: column;
