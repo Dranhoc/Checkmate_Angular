@@ -40,7 +40,6 @@ export class TournamentDetailsComponent {
     this.userId = this._authService.userId();
     if (this.tournamentId) {
       this.tournament.set(await this._tournamentService.getById(+this.tournamentId));
-      this.scoreBoard.set(await this._tournamentService.getScore(+this.tournamentId));
 
       if (this.userId) {
         const canRegister = await this._tournamentService.canRegister(
@@ -84,6 +83,9 @@ export class TournamentDetailsComponent {
       }
     }
     this.tournament.set({ ...this.tournament()! });
+    if (this.tournamentId && matches.length) {
+      this.scoreBoard.set(await this._tournamentService.getScore(+this.tournamentId));
+    }
   }
 
   async setResult(matchId: number, winner: string | null, isNull: string) {
