@@ -29,7 +29,7 @@ export class TournamentDetailsComponent {
   tournament = signal<Tournament | undefined>(undefined);
   tournamentCanRegister = signal<boolean | undefined>(undefined);
   updateTime = signal<number>(0);
-  isAdmin = signal<boolean>(true);
+  isAdmin = this._authService.isAdmin;
   errorUpdate = signal({ id: 0, message: '' });
   scoreBoard = signal<Array<Score>>([]);
 
