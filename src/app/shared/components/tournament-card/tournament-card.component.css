@@ -1,11 +1,13 @@
 @reference "../../../../tailwind.css";
 
 .tournament-card{
+  cursor: pointer;
   width: 100%;
   background-color: var(--light-grey-color);
   @apply p-20 md:p-32;
 
   &.details-page{
+    cursor: auto;
     background-color: white;
     border: 1px solid var(--mild-grey-transparent-color) !important;
     padding-inline: 50px;
