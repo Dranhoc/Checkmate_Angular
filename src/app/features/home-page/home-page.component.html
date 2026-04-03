@@ -42,14 +42,15 @@
       <div class="s-filters__elo-inputs">
         <div>
           <label for="eloFrom-filter-input">Min ELO</label>
-          <input id="eloFrom-filter-input" name="eloFrom-filter-input" type="number" placeholder="1 - 3000"
-            (change)="tournamentEloFromFilter = clampValue(tournamentEloFromFilter)"
+          <input id="eloFrom-filter-input" name="eloFrom-filter-input" [disabled]="isFilterDisabled()" type="number"
+            placeholder="1 - 3000" (change)="tournamentEloFromFilter = clampValue(tournamentEloFromFilter)"
             [(ngModel)]="tournamentEloFromFilter">
         </div>
         <div>
           <label for="eloTo-filter-input">Max Elo</label>
-          <input id="eloTo-filter-input" name="eloTo-filter-input" type="number" placeholder="1 - 3000"
-            (change)="tournamentEloToFilter = clampValue(tournamentEloToFilter)" [(ngModel)]="tournamentEloToFilter">
+          <input id="eloTo-filter-input" name="eloTo-filter-input" [disabled]="isFilterDisabled()" type="number"
+            placeholder="1 - 3000" (change)="tournamentEloToFilter = clampValue(tournamentEloToFilter)"
+            [(ngModel)]="tournamentEloToFilter">
         </div>
       </div>
 

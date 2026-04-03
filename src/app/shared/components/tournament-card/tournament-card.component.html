@@ -1,5 +1,6 @@
 @if(isRegistered() && tournament().status === 'pending'){
-<div class="tournament-card registered" [ngClass]="{'details-page' : detailsPage(), 'admin' : isAdmin}">
+<div class="tournament-card registered" [ngClass]="{'details-page' : detailsPage(), 'admin' : isAdmin}"
+  routerLink="/tournament/{{tournament().id}}">
   <div class="tournament-card__header">
     <div class="tournament-card__badge">
       Inscrit
@@ -31,7 +32,8 @@
 </div>
 
 }@else if(isComplete()){
-<div class="tournament-card complete" [ngClass]="{'details-page' : detailsPage(), 'admin' : isAdmin}">
+<div class="tournament-card complete" [ngClass]="{'details-page' : detailsPage(), 'admin' : isAdmin}"
+  routerLink="/tournament/{{tournament().id}}">
   <div class="tournament-card__header">
     <div class="tournament-card__badge">
       Complet
@@ -64,7 +66,8 @@
 @else{
 
 @if(tournament().status === 'pending'){
-<div class="tournament-card pending" [ngClass]="{'details-page' : detailsPage(), 'admin' : isAdmin}">
+<div class="tournament-card pending" [ngClass]="{'details-page' : detailsPage(), 'admin' : isAdmin}"
+  routerLink="/tournament/{{tournament().id}}">
   <div class="tournament-card__header">
     <div class="tournament-card__badge">
       Inscriptions ouvertes
@@ -95,7 +98,8 @@
 </div>
 
 }@else if(tournament().status === 'inProgress'){
-<div class="tournament-card in-progress" [ngClass]="{'details-page' : detailsPage(), 'admin' : isAdmin}">
+<div class="tournament-card in-progress" [ngClass]="{'details-page' : detailsPage(), 'admin' : isAdmin}"
+  routerLink="/tournament/{{tournament().id}}">
   <div class="tournament-card__header">
     <div class="tournament-card__badge">
       En cours
@@ -125,7 +129,8 @@
 </div>
 
 }@else if(tournament().status === 'finished'){
-<div class="tournament-card finished" [ngClass]="{'details-page' : detailsPage(), 'admin' : isAdmin}">
+<div class="tournament-card finished" [ngClass]="{'details-page' : detailsPage(), 'admin' : isAdmin}"
+  routerLink="/tournament/{{tournament().id}}">
   <div class="tournament-card__header">
     <div class="tournament-card__badge">
       Terminé

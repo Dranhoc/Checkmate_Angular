@@ -4,6 +4,7 @@ import { JwtDecoded, LoginResponse, RegisterData } from '@core/models/auth.inter
 import { jwtDecode } from 'jwt-decode';
 import { firstValueFrom } from 'rxjs';
 import { env } from '@env/env';
+import { sleep } from '@core/utils/sleep.utils';
 
 @Injectable({
   providedIn: 'root',

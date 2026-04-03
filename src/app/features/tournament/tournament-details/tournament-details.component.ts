@@ -24,7 +24,7 @@ export class TournamentDetailsComponent {
   private readonly _userService = inject(UserService);
   private readonly _activatedRoute = inject(ActivatedRoute);
 
-  tournamentId: string | null = this._activatedRoute.snapshot.paramMap.get('id');
+  tournamentId: string = this._activatedRoute.snapshot.paramMap.get('id')!;
   tournamentsError = signal<string>('');
   tournament = signal<Tournament | undefined>(undefined);
   tournamentCanRegister = signal<boolean | undefined>(undefined);
@@ -36,32 +36,33 @@ export class TournamentDetailsComponent {
   userId = '';
 
   async ngOnInit() {
-    console.log('ngOnInit');
-    this.userId = this._authService.userId();
-    if (this.tournamentId) {
-      this.tournament.set(await this._tournamentService.getById(+this.tournamentId));
+    this._activatedRoute.paramMap.subscribe({
+      next: async (paramMap) => {
+        this.tournamentId = paramMap.get('id')!;
+        console.log('ngOnInit');
+        this.userId = this._authService.userId();
+        if (this.tournamentId) {
+          this.tournament.set(await this._tournamentService.getById(+this.tournamentId));
 
-      if (this.userId) {
-        const canRegister = await this._tournamentService.canRegister(
-          +this.tournamentId,
-          this.userId,
-        );
-        this.tournamentCanRegister.set(canRegister);
-      }
-    }
-    this.setUpdateTime();
-    await this.getResult();
+          if (this.userId) {
+            const canRegister = await this._tournamentService.canRegister(
+              +this.tournamentId,
+              this.userId,
+            );
+            this.tournamentCanRegister.set(canRegister);
+          }
+        }
+        this.setUpdateTime();
+        await this.getResult();
+      },
+    });
   }
 
   async onRefresh() {
     this.tournamentCanRegister.set(
       await this._tournamentService.canRegister(+this.tournamentId!, this.userId),
     );
-    const id = this._activatedRoute.snapshot.paramMap.get('id');
-    if (id) {
-      this.tournament.set(await this._tournamentService.getById(+id));
-    }
-
+    this.tournament.set(await this._tournamentService.getById(+this.tournamentId));
     await this.getResult();
   }
   getAge(birthDate: string | Date): number {
@@ -83,6 +84,8 @@ export class TournamentDetailsComponent {
       }
     }
     this.tournament.set({ ...this.tournament()! });
+    console.log(this.tournamentId, matches.length);
+
     if (this.tournamentId && matches.length) {
       this.scoreBoard.set(await this._tournamentService.getScore(+this.tournamentId));
     }

@@ -9,7 +9,6 @@ import { TournamentStatusCard } from '@core/enums/status.enum';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { TournamentService } from '@core/services/tournament.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ApiResponse } from '@core/models/api.interface';
 
 @Component({
   selector: 'tournament-card',

@@ -34,7 +34,7 @@ export class HomePageComponent {
   tournamentStatusFilter = '';
   tournamentCategoryFilter = '';
   tournamentEloFilter: number | null = null;
-  tournamentEloFromFilter: number = 1;
+  tournamentEloFromFilter: number = 0;
   tournamentEloToFilter: number = 3000;
   tournamentCanRegisterFilter: boolean | null = null;
 
@@ -76,5 +76,9 @@ export class HomePageComponent {
         canRegister: this.tournamentCanRegisterFilter,
       },
     });
+  }
+
+  isFilterDisabled() {
+    return this.tournamentEloFilter !== null;
   }
 }
