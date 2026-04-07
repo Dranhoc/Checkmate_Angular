@@ -37,8 +37,12 @@ export class HomePageComponent {
   tournamentEloFromFilter: number = 0;
   tournamentEloToFilter: number = 3000;
   tournamentCanRegisterFilter: boolean | null = null;
+  tournamentIsRegistered: boolean | null = null;
+  tournamentIsComplete: boolean | null = null;
 
   async ngOnInit() {
+    console.log('INIT');
+
     this.userId = this._authService.userId();
     if (this.userId) {
       this.tournamentsCanRegister.set(
@@ -65,6 +69,14 @@ export class HomePageComponent {
   }
 
   onClickFilter() {
+    if (this.tournamentStatusFilter === 'registered') {
+      this.tournamentIsRegistered = true;
+      this.tournamentStatusFilter = '';
+    }
+    if (this.tournamentStatusFilter === 'complete') {
+      this.tournamentIsComplete = true;
+      this.tournamentStatusFilter = '';
+    }
     this._router.navigate(['/'], {
       queryParams: {
         name: this.tournamentNameSearch,
@@ -74,6 +86,8 @@ export class HomePageComponent {
         fromElo: this.tournamentEloFromFilter,
         toElo: this.tournamentEloToFilter,
         canRegister: this.tournamentCanRegisterFilter,
+        isComplete: this.tournamentIsComplete,
+        isRegistered: this.tournamentIsRegistered,
       },
     });
   }

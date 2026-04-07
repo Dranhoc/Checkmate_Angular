@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TournamentStatusCard } from '@core/enums/status.enum';
 import { AuthService } from '@core/services/auth.service';
 import { TournamentService } from '@core/services/tournament.service';
+import { sleep } from '@core/utils/sleep.utils';
 
 @Component({
   selector: 'router-button',
@@ -32,8 +33,10 @@ export class RouterButtonComponent {
       (this.status() === TournamentStatusCard.pending &&
         !this.tournamentCanRegister() &&
         this.isConnected()) ||
-      this.status() === 'complete',
+      this.status() === 'complete' ||
+      this.status() === 'finished',
   );
+  isDisabledWhenLoading = signal(false);
 
   navigate() {
     if (!this.isConnected()) {
@@ -75,23 +78,19 @@ export class RouterButtonComponent {
     }
   }
 
-  onClick() {
-    console.log(this.detailsPage());
+  async onClick() {
+    this.isDisabledWhenLoading.set(true);
+    await sleep(1000);
 
     if (this.detailsPage()) {
-      console.log('detailsPage');
-
       if (this.status() === 'registered') {
-        console.log('registered - unsubscribe');
         this.unsubscribe();
         this.actionDone.emit();
       } else {
-        console.log('not registered => register');
         this.register();
         this.actionDone.emit();
       }
     } else {
-      console.log('navigate');
       this.navigate();
     }
   }
